@@ -1,13 +1,29 @@
 import React from "react";
+import { useState } from "react";
 import { CgCheckR, CgCloseR } from "react-icons/cg";
 import { FiEdit } from "react-icons/fi";
+import TodoForm from "./TodoForm";
 
 function TodoList(props) {
+  const [editText, setEditText] = useState("");
+
+  const submitEdits = (value) => {
+    props.editTodo(editText.id, value);
+    setEditText({
+      id: null,
+      value: "",
+    });
+  };
+
+  if (editText.id) {
+    return <TodoForm editText={editText} onSubmit={submitEdits} />;
+  }
+
   return (
     <div className="todo-list">
       {props.todos.map((todo, index) => (
         <div
-          className={todo.isComplete ? "todo-row complete" : "todo-row"}
+          className={todo.complete ? "todo-row complete" : "todo-row"}
           key={index}
         >
           <div key={todo.id}>
@@ -19,11 +35,11 @@ function TodoList(props) {
               className="complete-icon"
             />
             <FiEdit
-              onClick={() => setEdit({ id: todo.id, value: todo.text })}
+              onClick={() => setEditText({ id: todo.id, value: todo.text })}
               className="edit-icon"
             />
             <CgCloseR
-              onClick={() => props.removeTodo(todo.id)}
+              onClick={() => props.deleteTodo(todo.id)}
               className="delete-icon"
             />
           </div>
