@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 
-function TodoForm() {
+function TodoForm(props) {
   const [inputTodo, setInputTodo] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    props.onSubmit({
+      id: Math.floor(Math.random() * 1000),
+      text: inputTodo,
+      complete: false,
+    });
 
     setInputTodo("");
   };
@@ -18,10 +24,11 @@ function TodoForm() {
       <input
         type="text"
         className="todo-input"
+        placeholder="Create Todo"
         value={inputTodo}
         onChange={handleChange}
       />
-      <button>Create</button>
+      <button className="todo-button">Create</button>
     </form>
   );
 }
