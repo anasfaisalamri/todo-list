@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 
 function TodoForm(props) {
   const [todoInput, setTodoInput] = useState(
-    props.editText ? props.editText.value : ""
+    props.editTodo ? props.editTodo.value : ""
   );
 
   const inputRef = useRef(null);
@@ -29,7 +29,7 @@ function TodoForm(props) {
 
   return (
     <form className="todo-form" onSubmit={handleSubmit}>
-      {props.editText ? (
+      {props.editTodo ? (
         <>
           <input
             type="text"

@@ -16,7 +16,7 @@ function TodoList(props) {
   };
 
   if (editText.id) {
-    return <TodoForm editText={editText} onSubmit={submitEdits} />;
+    return <TodoForm editTodo={editText} onSubmit={submitEdits} />;
   }
 
   return (

@@ -28,16 +28,16 @@ function Todo() {
     setTodos(newTodos);
   };
 
-  const editTodo = (todoId, newValue) => {
-    if (!newValue.text || /^\s*$/.test(newValue.text)) {
+  const editTodo = (todoId, newTodo) => {
+    if (!newTodo.text || /^\s*$/.test(newTodo.text)) {
       return;
     }
 
-    setTodos((prevTodos) =>
-      prevTodos.map((prevTodo) =>
-        prevTodo.id === todoId ? newValue : prevTodo
-      )
+    let updatedTodos = todos.map((todo) =>
+      todoId === todo.id ? newTodo : todo
     );
+
+    setTodos(updatedTodos);
   };
 
   const deleteTodo = (id) => {
