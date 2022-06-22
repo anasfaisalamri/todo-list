@@ -77,6 +77,11 @@ h1 {
   padding: 16px 22px;
 }
 
+.todo-list {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
 .todo-row {
   display: flex;
   justify-content: space-between;
